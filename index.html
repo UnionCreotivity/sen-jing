@@ -181,6 +181,14 @@
             scale: "0.8",
             duration: 1,
           })
+            .from(
+              ".article-2-txt-2",
+              {
+                opacity: 0,
+                duration: 1,
+              },
+              "<+1"
+            )
             .from(".article-2-txt-1", {
               y: "-20%",
               duration: 1,
@@ -189,14 +197,6 @@
               ".article-2-txt-3",
               {
                 y: "70%",
-                duration: 1,
-              },
-              "<"
-            )
-            .from(
-              ".article-2-txt-2",
-              {
-                opacity: 0,
                 duration: 1,
               },
               "<"
@@ -213,10 +213,10 @@
           gsap.from(".article-3-img img", {
             scrollTrigger: {
               trigger: ".article-3",
-              start: "25% bottom",
+              start: "35% bottom",
             },
             opacity: 0,
-            duation: 1.5,
+            duation: 2,
           });
         };
 
