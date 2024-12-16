@@ -29,7 +29,15 @@
       <article class="article-2">
         <div class="article-2-container">
           <div class="article-2-txt">
-            <img src="./img/article2-txt@2x.png" alt="" />
+            <div class="article-2-txt-1">
+              <img src="./img/article2-txt-1.svg" alt="" />
+            </div>
+            <div class="article-2-txt-2">
+              <img src="./img/article2-txt-2.svg" alt="" />
+            </div>
+            <div class="article-2-txt-3">
+              <img src="./img/article2-txt-3.svg" alt="" />
+            </div>
           </div>
           <div class="article-2-img">
             <img src="./img/article2-bg@2x.webp" alt="" />
@@ -48,42 +56,49 @@
               <div class="article-4-left-img-para">
                 <img src="./img/article-4-left-img-para@2x.webp" alt="" />
               </div>
+              <div class="article-4-left-img-back"></div>
               <img src="./img/article-4-left-img-1@2x.webp" alt="" />
             </div>
             <div class="article-4-left-img article-4-img-2">
               <div class="article-4-left-img-para">
                 <img src="./img/article-4-left-img-para@2x.webp" alt="" />
               </div>
+              <div class="article-4-left-img-back"></div>
               <img src="./img/article-4-left-img-2@2x.webp" alt="" />
             </div>
             <div class="article-4-left-img article-4-img-3">
               <div class="article-4-left-img-para">
                 <img src="./img/article-4-left-img-para@2x.webp" alt="" />
               </div>
+              <div class="article-4-left-img-back"></div>
               <img src="./img/article-4-left-img-3@2x.webp" alt="" />
             </div>
             <div class="article-4-left-img article-4-img-4">
               <div class="article-4-left-img-para">
                 <img src="./img/article-4-left-img-para@2x.webp" alt="" />
               </div>
+              <div class="article-4-left-img-back"></div>
               <img src="./img/article-4-left-img-4@2x.webp" alt="" />
             </div>
             <div class="article-4-left-img article-4-img-5">
               <div class="article-4-left-img-para">
                 <img src="./img/article-4-left-img-para@2x.webp" alt="" />
               </div>
+              <div class="article-4-left-img-back"></div>
               <img src="./img/article-4-left-img-5@2x.webp" alt="" />
             </div>
             <div class="article-4-left-img article-4-img-6">
               <div class="article-4-left-img-para">
                 <img src="./img/article-4-left-img-para@2x.webp" alt="" />
               </div>
+              <div class="article-4-left-img-back"></div>
               <img src="./img/article-4-left-img-6@2x.webp" alt="" />
             </div>
             <div class="article-4-left-img article-4-img-7">
               <div class="article-4-left-img-para">
                 <img src="./img/article-4-left-img-para@2x.webp" alt="" />
               </div>
+              <div class="article-4-left-img-back"></div>
               <img src="./img/article-4-left-img-7@2x.webp" alt="" />
             </div>
           </section>
@@ -156,13 +171,14 @@
             scrollTrigger: {
               trigger: ".article-2",
               start: "top top",
-              end: "bottom+=100% bottom",
+              end: "bottom+=150% bottom",
               scrub: 1,
               pin: true,
             },
           });
-          tl.to(".article-2-img,.article-2-txt", {
-            scale: 0.8,
+          tl.to(".article-2-container ", {
+            borderRadius: "0px 0px 0px 0px",
+            scale: "0.8",
             duration: 1,
           })
             .from(".article-2-txt", {
@@ -184,20 +200,46 @@
               start: "center bottom",
             },
           });
-          tl.from(".text-latest img,.text-news img", {
-            x: "-105%",
-            skewY: "30deg",
+          tl.from(".article-4-left-img-back", {
             opacity: 0,
-            stagger: "0.25",
-            duration: 1,
-          }).from(
-            ".text-more,.text-last-zh",
-            {
-              opacity: 0,
-              duration: 1.25,
-            },
-            "<+0.5"
-          );
+            duration: 0.5,
+          })
+            .to(
+              ".article-4-left-img>img",
+              {
+                x: "0%",
+                stagger: 0.1,
+                duration: 0.75,
+              },
+              "<+0.1"
+            )
+            .to(
+              ".article-4-left-img-back",
+              {
+                opacity: 1,
+                duration: 0.5,
+              },
+              "<+0.25"
+            )
+            .from(
+              ".text-latest img,.text-news img",
+              {
+                x: "-105%",
+                skewY: "30deg",
+                opacity: 0,
+                stagger: "0.25",
+                duration: 1,
+              },
+              "<+1"
+            )
+            .from(
+              ".text-more,.text-last-zh",
+              {
+                opacity: 0,
+                duration: 1.25,
+              },
+              "<+0.5"
+            );
         };
         article4Ani();
       });
