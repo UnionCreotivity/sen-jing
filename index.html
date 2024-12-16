@@ -26,9 +26,19 @@
           </div>
         </div>
       </article>
-      <article class="article-2-3">
-        <div class="article-2-3-img">
-          <img src="./img/article2-3@2x.webp" alt="" />
+      <article class="article-2">
+        <div class="article-2-container">
+          <div class="article-2-txt">
+            <img src="./img/article2-txt@2x.png" alt="" />
+          </div>
+          <div class="article-2-img">
+            <img src="./img/article2-bg@2x.webp" alt="" />
+          </div>
+        </div>
+      </article>
+      <article class="article-3">
+        <div class="article-3-img">
+          <img src="./img/article3-bg@2x.webp" alt="" />
         </div>
       </article>
       <article class="article-4">
@@ -140,6 +150,32 @@
         };
 
         article1Pin();
+
+        const article2Ani = () => {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".article-2",
+              start: "top top",
+              end: "bottom+=100% bottom",
+              scrub: 1,
+              pin: true,
+            },
+          });
+          tl.to(".article-2-img,.article-2-txt", {
+            scale: 0.8,
+            duration: 1,
+          })
+            .from(".article-2-txt", {
+              opacity: 0,
+              duration: 1,
+            })
+            .to(".article-2-txt", {
+              opacity: 1,
+              duration: 1,
+            });
+        };
+
+        article2Ani();
 
         const article4Ani = () => {
           const tl = gsap.timeline({
