@@ -52,6 +52,7 @@
       height: 100vh;
       display: flex;
       justify-content: center;
+
       .article-4-left {
         width: 67%;
         display: flex;
@@ -129,6 +130,11 @@
             width: 1.6vw;
           }
         }
+      }
+    }
+    @include tablet {
+      .article-4-container {
+        height: 80vh;
       }
     }
   }

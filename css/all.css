@@ -134,6 +134,11 @@
 #home .article-4 .article-4-container .article-4-right .article-4-right-container .text-more {
   width: 1.6vw;
 }
+@media screen and (max-width: 1600px) {
+  #home .article-4 .article-4-container {
+    height: 80vh;
+  }
+}
 #home .footer {
   width: 100%;
 }
