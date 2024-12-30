@@ -1,0 +1,21 @@
+@import "_config";
+@import "_home";
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+img,
+video,
+canvas {
+  width: 100%;
+  display: block;
+}
+
+article {
+  width: 100%;
+  position: relative;
+}
