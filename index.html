@@ -171,7 +171,7 @@
             scrollTrigger: {
               trigger: ".article-2",
               start: "top top",
-              end: "bottom+=150% bottom",
+              end: "bottom+=200% bottom",
               scrub: 1,
               pin: true,
             },
@@ -204,7 +204,20 @@
             .to(".article-2-txt", {
               opacity: 1,
               duration: 1,
-            });
+            }).to(".article-2-txt-2",{
+              opacity: 0,
+              duration: 1,
+            }).to(".article-2-txt-1",{
+              y: "-20%",
+              duration: 1,
+            }).to(".article-2-txt-3",{
+              y: "70%",
+                duration: 1
+            },"<").to(".article-2-container", {
+              borderRadius: "400px 400px 400px 400px",
+            scale: "0.25",
+            duration: 1,
+            })
         };
 
         article2Ani();
