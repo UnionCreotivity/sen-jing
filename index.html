@@ -132,9 +132,18 @@
     <script>
       $(window).on("load", function () {
         gsap.registerPlugin(ScrollTrigger);
-
+        document.scrollingElement.scrollTop=0
+        document.body.style.overflow = 'hidden';
         const article1Ani = () => {
           const tl = gsap.timeline({ delay: 0.5 });
+          const tl_second=gsap.timeline({
+                  scrollTrigger:{
+                    trigger:".article-1-left",
+                    start:"top top",
+                    bottom:'bottom bottom',
+                    scrub:1,
+                  },
+                })
           tl.to(".article-1-right-squre-item", {
             x: "-105%",
             stagger: 0.1,
@@ -146,6 +155,35 @@
               y: "105%",
               ease: "power4.out",
               duration: 1,
+              onComplete:()=>{
+                document.body.style.overflow = '';
+                tl_second.to(".article-1-right-squre-item:nth-child(1)",{
+                  x: "-10%",
+                  ease: "power4.out",
+                  duration: 1.5,
+                }).to(".article-1-right-squre-item:nth-child(2)",{
+                  x: "-20%",
+                  ease: "power4.out",
+                  duration: 1.5,
+                },"<+0.05").to(".article-1-right-squre-item:nth-child(3)",{
+                  x: "-30%",
+                  ease: "power4.out",
+                  duration: 1.5,
+                },"<+0.05")
+                // gsap.to(".article-1-right-squre-item",{
+                //   scrollTrigger:{
+                //     trigger:".article-1-container",
+                //     start:"top top",
+                //     bottom:'bottom bottom',
+                //     markers:true,
+                //     scrub:1,
+                //   },
+                //   x: "0%",
+                //   stagger: 0.1,
+                //   ease: "power4.out",
+                //   duration: 1.5,
+                // })
+              }
             },
             "<+0.5"
           );
