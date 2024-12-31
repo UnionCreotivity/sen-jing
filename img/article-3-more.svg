@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_圖層_2" data-name="圖層 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 56.23 30.47">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#_未命名漸層_70);
+      }
+
+      .cls-2 {
+        fill: #333;
+        font-family: Jost-Regular, 'Jost Regular';
+        font-size: 20px;
+        font-variation-settings: ';
+        letter-spacing: .05em;
+      }
+    </style>
+    <linearGradient id="_未命名漸層_70" data-name="未命名漸層 70" x1="-255.44" y1="289.23" x2="-201.25" y2="289.23" gradientTransform="translate(257.48 -259.82)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c5c5c5"/>
+      <stop offset=".4" stop-color="#959596"/>
+      <stop offset="1" stop-color="#000"/>
+    </linearGradient>
+  </defs>
+  <g id="pic">
+    <g>
+      <text class="cls-2" transform="translate(0 16.74)"><tspan x="0" y="0">MORE</tspan></text>
+      <rect class="cls-1" x="2.04" y="28.34" width="54.19" height="2.13"/>
+    </g>
+  </g>
+</svg>

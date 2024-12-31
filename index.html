@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
     <link rel="stylesheet" href="./css/all.css" />
     <title>森景建設</title>
   </head>
@@ -19,9 +23,45 @@
               <div class="article-1-right-squre-item"></div>
               <div class="article-1-right-squre-item"></div>
             </div>
-            <img src="./img/article-1-right@2x.webp" alt="" />
-            <div class="article-1-right-txt">
-              <img src="./img/article-1-right-txt.svg" alt="" />
+            <div class="article-1-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <video
+                    src="./video/輪播圖-1.mp4"
+                    loop
+                    autoplay
+                    muted
+                    playsinline
+                  ></video>
+                  <!-- <img src="./img/article-1-right@2x.webp" alt="" /> -->
+                  <div class="article-1-right-txt">
+                    <img src="./img/article-1-right-txt.svg" alt="" />
+                  </div>
+                  <div class="article-1-right-small-txt">
+                    <img src="./img/cut-1-right-middle-text.svg" alt="" />
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img src="./img/輪播圖-2.png" alt="" />
+                  <div class="article-1-right-txt">
+                    <img src="./img/article-1-right-txt.svg" alt="" />
+                  </div>
+                  <div class="article-1-right-small-txt">
+                    <img src="./img/cut-1-right-middle-text.svg" alt="" />
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img src="./img/輪播圖-3.png" alt="" />
+                  <div class="article-1-right-txt">
+                    <img src="./img/article-1-right-txt.svg" alt="" />
+                  </div>
+                  <div class="article-1-right-small-txt">
+                    <img src="./img/cut-1-right-middle-text.svg" alt="" />
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div> -->
             </div>
           </div>
         </div>
@@ -45,8 +85,28 @@
         </div>
       </article>
       <article class="article-3">
-        <div class="article-3-img">
-          <img src="./img/article3-bg@2x.webp" alt="" />
+        <div class="article-3-container">
+          <div class="article-3-left">
+            <div class="article-3-left-top">
+              <div class="article-3-left-top-small">
+                <img src="./img/article-3-small-title.svg" alt="" />
+              </div>
+              <div class="article-3-left-top-big">
+                <div class="article-3-left-top-big-title">
+                  <img src="./img/article-3-title.svg" alt="" />
+                </div>
+                <div class="article-3-left-top-big-more">
+                  <img src="./img/article-3-more.svg" alt="" />
+                </div>
+              </div>
+            </div>
+            <div class="article-3-left-bottom">
+              <img src="./img/article-3-para.svg" alt="" />
+            </div>
+          </div>
+          <div class="article-3-right">
+            <img src="./img/article-3-right-img@2x.webp" alt="" />
+          </div>
         </div>
       </article>
       <article class="article-4">
@@ -129,47 +189,84 @@
     <script src="./js/jquery-3.7.1.min.js"></script>
     <script src="./js/gsap.min.js"></script>
     <script src="./js/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
       $(window).on("load", function () {
         gsap.registerPlugin(ScrollTrigger);
-        document.scrollingElement.scrollTop=0
-        document.body.style.overflow = 'hidden';
+        document.scrollingElement.scrollTop = 0;
+        document.body.style.overflow = "hidden";
+
+        //輪播
+        const cut1Swiper = () => {
+          const swiper = new Swiper(".article-1-swiper", {
+            slidesPerView: 1,
+            spaceBetween: 50,
+            speed: 1500,
+            autoplay: {
+              delay: 6000,
+              disableOnInteraction: false,
+            },
+            loop: true,
+            // navigation: {
+            //   nextEl: ".swiper-button-next",
+            //   prevEl: ".swiper-button-prev",
+            // },
+            effect: "fade",
+            fadeEffect: {
+              crossFade: true,
+            },
+          });
+        };
+        cut1Swiper();
+
+        //動畫
         const article1Ani = () => {
           const tl = gsap.timeline({ delay: 0.5 });
-          const tl_second=gsap.timeline({
-                  scrollTrigger:{
-                    trigger:".article-1-left",
-                    start:"top top",
-                    bottom:'bottom bottom',
-                    scrub:1,
-                  },
-                })
+          const tl_second = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".article-1-left",
+              start: "top top",
+              bottom: "bottom bottom",
+              scrub: 1,
+            },
+          });
           tl.to(".article-1-right-squre-item", {
             x: "-105%",
             stagger: 0.1,
             ease: "power4.out",
             duration: 1.5,
           }).from(
-            ".article-1-right-txt img",
+            ".article-1-right-txt img,.article-1-right-small-txt img",
             {
               y: "105%",
               ease: "power4.out",
               duration: 1,
-              onComplete:()=>{
-                document.body.style.overflow = '';
-                tl_second.to(".article-1-right-squre-item:nth-child(1)",{
-                  x: "-10%",
-                  ease: "power4.out",
-                  duration: 1.5,
-                }).to(".article-1-right-squre-item:nth-child(2)",{
-                  x: "-20%",
-                  ease: "power4.out",
-                  duration: 1.5,
-                },"<+0.05").to(".article-1-right-squre-item:nth-child(3)",{
-                  x: "-30%",
-                  ease: "power4.out",
-                  duration: 1.5,
-                },"<+0.05")
+              onComplete: () => {
+                document.body.style.overflow = "";
+                tl_second
+                  .to(".article-1-right-squre-item:nth-child(1)", {
+                    x: "-10%",
+                    ease: "power4.out",
+                    duration: 1.5,
+                  })
+                  .to(
+                    ".article-1-right-squre-item:nth-child(2)",
+                    {
+                      x: "-20%",
+                      ease: "power4.out",
+                      duration: 1.5,
+                    },
+                    "<+0.05"
+                  )
+                  .to(
+                    ".article-1-right-squre-item:nth-child(3)",
+                    {
+                      x: "-30%",
+                      ease: "power4.out",
+                      duration: 1.5,
+                    },
+                    "<+0.05"
+                  );
                 // gsap.to(".article-1-right-squre-item",{
                 //   scrollTrigger:{
                 //     trigger:".article-1-container",
@@ -183,7 +280,7 @@
                 //   ease: "power4.out",
                 //   duration: 1.5,
                 // })
-              }
+              },
             },
             "<+0.5"
           );
@@ -212,7 +309,7 @@
               end: "bottom+=175% bottom",
               scrub: 1,
               pin: true,
-              pinSpacing: true
+              pinSpacing: true,
             },
           });
           tl.to(".article-2-container ", {
@@ -243,64 +340,95 @@
             .to(".article-2-txt", {
               opacity: 1,
               duration: 1,
-            }).to(".article-2-txt-2",{
+            })
+            .to(".article-2-txt-2", {
               opacity: 0,
               duration: 1,
-            }).to(".article-2-txt-1",{
+            })
+            .to(".article-2-txt-1", {
               y: "-20%",
               duration: 1,
-            }).to(".article-2-txt-3",{
-              y: "70%",
-                duration: 1
-            },"<").to(".article-2-container", {
+            })
+            .to(
+              ".article-2-txt-3",
+              {
+                y: "70%",
+                duration: 1,
+              },
+              "<"
+            )
+            .to(".article-2-container", {
               borderRadius: "400px 400px 400px 400px",
-            scale: "0.25",
-            duration: 1,
+              scale: "0.25",
+              duration: 1,
             });
         };
 
         article2Ani();
 
         const article3Ani = () => {
-          // const tl=gsap.timeline({
-          //   scrollTrigger: {
-          //     trigger: ".article-3",
-          //     start: "top top",
-          //     end: "bottom+=150% top",
-          //     scrub:1,
-          //     pin: true,
-          //   },
-          // })
-          // tl.from(".article-3-img",{
-          //   x:"-105%",
-          //   duration:3
-          // }).to(".article-3-img",{
-          //   opacity:1,
-          //   duration:1
-          // })
-          gsap.from(".article-3-img img", {
+          const tl = gsap.timeline({
             scrollTrigger: {
               trigger: ".article-3",
               start: "35% bottom",
             },
-            opacity: 0,
-            duration: 1.5,
           });
+          tl.from(".article-3-left-top-big-title img", {
+            y: "105%",
+            skewX: "-45deg",
+            ease: "power4.out",
+            duration: 1.25,
+          }).from(
+            ".article-3-left-top-small,.article-3-left-top-big-more",
+            {
+              opacity: 0,
+              duration: 1.5,
+            },
+            "<+0.5"
+          );
+          // gsap.from(".article-3-img img", {
+          //   scrollTrigger: {
+          //     trigger: ".article-3",
+          //     start: "35% bottom",
+          //   },
+          //   opacity: 0,
+          //   duration: 1.5,
+          // });
         };
 
         article3Ani();
 
         const article4Ani = () => {
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: ".article-4-container",
-              start: "center bottom",
+          const tl = gsap
+            .timeline({
+              scrollTrigger: {
+                trigger: ".article-4-container",
+                start: "center bottom",
+              },
+            })
+            .from(".text-latest img,.text-news img", {
+              x: "-105%",
+              skewY: "30deg",
+              opacity: 0,
+              stagger: "0.25",
+              duration: 1,
+            })
+            .from(
+              ".text-more,.text-last-zh",
+              {
+                opacity: 0,
+                duration: 1.25,
+              },
+              "<+0.5"
+            );
+          tl.from(
+            ".article-4-left-img-back",
+            {
+              opacity: 0,
+              duration: 0.5,
             },
-          });
-          tl.from(".article-4-left-img-back", {
-            opacity: 0,
-            duration: 0.5,
-          })
+            "<+0.25"
+          )
             .to(
               ".article-4-left-img>img",
               {
@@ -317,25 +445,6 @@
                 duration: 0.5,
               },
               "<+0.25"
-            )
-            .from(
-              ".text-latest img,.text-news img",
-              {
-                x: "-105%",
-                skewY: "30deg",
-                opacity: 0,
-                stagger: "0.25",
-                duration: 1,
-              },
-              "<+1"
-            )
-            .from(
-              ".text-more,.text-last-zh",
-              {
-                opacity: 0,
-                duration: 1.25,
-              },
-              "<+0.5"
             );
         };
         article4Ani();
