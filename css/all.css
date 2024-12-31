@@ -67,6 +67,7 @@
   left: 0;
   width: 100%;
   overflow: hidden;
+  padding: 1% 2% 0% 1%;
 }
 #home .article-1 .article-1-container .article-1-right .article-1-swiper .article-1-right-txt img {
   padding: 1%;
