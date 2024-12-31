@@ -209,10 +209,10 @@
             scrollTrigger: {
               trigger: ".article-2",
               start: "top top",
-              end: "bottom+=150% bottom",
+              end: "bottom+=175% bottom",
               scrub: 1,
               pin: true,
-              pinSpacing: false
+              pinSpacing: true
             },
           });
           tl.to(".article-2-container ", {
@@ -262,30 +262,30 @@
         article2Ani();
 
         const article3Ani = () => {
-          const tl=gsap.timeline({
-            scrollTrigger: {
-              trigger: ".article-3",
-              start: "top top",
-              end: "bottom+=150% top",
-              scrub:1,
-              pin: true,
-            },
-          })
-          tl.from(".article-3-img",{
-            x:"-105%",
-            duration:3
-          }).to(".article-3-img",{
-            opacity:1,
-            duration:1
-          })
-          // gsap.from(".article-3-img img", {
+          // const tl=gsap.timeline({
           //   scrollTrigger: {
           //     trigger: ".article-3",
-          //     start: "35% bottom",
+          //     start: "top top",
+          //     end: "bottom+=150% top",
+          //     scrub:1,
+          //     pin: true,
           //   },
-          //   opacity: 0,
-          //   duration: 1.5,
-          // });
+          // })
+          // tl.from(".article-3-img",{
+          //   x:"-105%",
+          //   duration:3
+          // }).to(".article-3-img",{
+          //   opacity:1,
+          //   duration:1
+          // })
+          gsap.from(".article-3-img img", {
+            scrollTrigger: {
+              trigger: ".article-3",
+              start: "35% bottom",
+            },
+            opacity: 0,
+            duration: 1.5,
+          });
         };
 
         article3Ani();
