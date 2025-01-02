@@ -13,7 +13,11 @@
 #home .article-1 .article-1-container .article-1-left {
   position: relative;
   width: 42%;
+  height: 100%;
   z-index: 2;
+}
+#home .article-1 .article-1-container .article-1-left img {
+  height: 100%;
 }
 #home .article-1 .article-1-container .article-1-right {
   position: relative;
