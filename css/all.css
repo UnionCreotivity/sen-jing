@@ -16,8 +16,26 @@
   height: 100%;
   z-index: 2;
 }
-#home .article-1 .article-1-container .article-1-left img {
+#home .article-1 .article-1-container .article-1-left > img {
   height: 100%;
+}
+#home .article-1 .article-1-container .article-1-left .article-1-left-txt {
+  width: 7.5vw;
+  position: absolute;
+  top: 9.5vw;
+  left: 28vw;
+}
+#home .article-1 .article-1-container .article-1-left .article-1-left-txt .txt-active {
+  position: absolute;
+  opacity: 1;
+  transform: translateX(0%);
+  transition: all 1.5s;
+}
+#home .article-1 .article-1-container .article-1-left .article-1-left-txt .txt-inactive {
+  position: absolute;
+  opacity: 0;
+  transform: translateX(10%);
+  transition: all 1.5s;
 }
 #home .article-1 .article-1-container .article-1-right {
   position: relative;
@@ -43,6 +61,35 @@
   height: 100%;
   width: 100%;
   overflow: hidden;
+}
+#home .article-1 .article-1-container .article-1-right .article-1-swiper .swiper-pagination {
+  color: white;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: column;
+  width: 4vw;
+  left: 90%;
+  bottom: 46%;
+  gap: 10px;
+  transition: all 0.5s;
+}
+#home .article-1 .article-1-container .article-1-right .article-1-swiper .swiper-page-top-active {
+  font-size: 1.1vw;
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#home .article-1 .article-1-container .article-1-right .article-1-swiper .swiper-page-top-active span {
+  display: inline-block;
+  width: 1.25vw;
+  height: 1px;
+  background-color: white;
+}
+#home .article-1 .article-1-container .article-1-right .article-1-swiper .swiper-page-top-inactive {
+  font-size: 0.9vw;
+  transition: all 0.5s;
 }
 #home .article-1 .article-1-container .article-1-right .article-1-swiper .swiper-slide {
   -webkit-user-select: none;
@@ -70,11 +117,12 @@
   bottom: 0;
   left: 0;
   width: 100%;
+  height: 100%;
   overflow: hidden;
-  padding: 1% 2% 0% 1%;
+  mix-blend-mode: soft-light;
 }
 #home .article-1 .article-1-container .article-1-right .article-1-swiper .article-1-right-txt img {
-  padding: 1%;
+  height: 100%;
 }
 #home .article-2 {
   display: flex;

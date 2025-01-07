@@ -16,6 +16,11 @@
         <div class="article-1-container">
           <div class="article-1-left">
             <img src="./img/article-1-left@2x.webp" alt="" />
+            <div class="article-1-left-txt">
+              <img class="txt-1" src="./img/article-1-left-txt.svg" alt="" />
+              <img class="txt-2" src="./img/article-1-left-txt.svg" alt="" />
+              <img class="txt-3" src="./img/article-1-left-txt.svg" alt="" />
+            </div>
           </div>
           <div class="article-1-right">
             <div class="article-1-right-squre">
@@ -35,33 +40,34 @@
                   ></video>
                   <!-- <img src="./img/article-1-right@2x.webp" alt="" /> -->
                   <div class="article-1-right-txt">
-                    <img src="./img/article-1-right-txt.svg" alt="" />
+                    <img src="./img/Text-B.png" alt="" />
                   </div>
-                  <div class="article-1-right-small-txt">
+                  <!-- <div class="article-1-right-small-txt">
                     <img src="./img/cut-1-right-middle-text.svg" alt="" />
-                  </div>
+                  </div> -->
                 </div>
                 <div class="swiper-slide">
                   <img src="./img/輪播圖-2.png" alt="" />
                   <div class="article-1-right-txt">
-                    <img src="./img/article-1-right-txt.svg" alt="" />
+                    <img src="./img/Text.png" alt="" />
                   </div>
-                  <div class="article-1-right-small-txt">
+                  <!-- <div class="article-1-right-small-txt">
                     <img src="./img/cut-1-right-middle-text.svg" alt="" />
-                  </div>
+                  </div> -->
                 </div>
                 <div class="swiper-slide">
                   <img src="./img/輪播圖-3.png" alt="" />
                   <div class="article-1-right-txt">
-                    <img src="./img/article-1-right-txt.svg" alt="" />
+                    <img src="./img/Text-B.png" alt="" />
                   </div>
-                  <div class="article-1-right-small-txt">
+                  <!-- <div class="article-1-right-small-txt">
                     <img src="./img/cut-1-right-middle-text.svg" alt="" />
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <!-- <div class="swiper-button-prev"></div>
               <div class="swiper-button-next"></div> -->
+              <div class="swiper-pagination"></div>
             </div>
           </div>
         </div>
@@ -202,16 +208,42 @@
             slidesPerView: 1,
             spaceBetween: 50,
             speed: 1500,
-            autoplay: {
-              delay: 6000,
-              disableOnInteraction: false,
-            },
+            // autoplay: {
+            //   delay: 6000,
+            //   disableOnInteraction: false,
+            // },
             loop: true,
             // navigation: {
             //   nextEl: ".swiper-button-next",
             //   prevEl: ".swiper-button-prev",
             // },
             effect: "fade",
+            pagination: {
+              el: ".swiper-pagination",
+              type: "custom",
+              currentClass: "swiper-pagination-active",
+              renderCustom: function (swiper, current, total) {
+                let page = "";
+                let txt = ``;
+                let currentHalf;
+                let totalhalf = total / 2;
+                for (let i = 0; i <= total; i++) {
+                  if (i === 0) {
+                    continue;
+                  }
+                  $(`.txt-${i}`).removeClass("txt-active");
+                  $(`.txt-${i}`).removeClass("txt-inactive");
+                  if (i === current) {
+                    page += `<span class="swiper-page-top-active custom"><span></span>0${i}</span>`;
+                    $(`.txt-${i}`).addClass("txt-active");
+                  } else {
+                    page += `<span class="swiper-page-top-inactive custom">0${i}</span>`;
+                    $(`.txt-${i}`).addClass("txt-inactive");
+                  }
+                }
+                return page;
+              },
+            },
             fadeEffect: {
               crossFade: true,
             },
@@ -235,55 +267,47 @@
             stagger: 0.1,
             ease: "power4.out",
             duration: 1.5,
-          }).from(
-            ".article-1-right-txt img,.article-1-right-small-txt img",
-            {
-              y: "105%",
-              ease: "power4.out",
-              duration: 1,
-              onComplete: () => {
-                document.body.style.overflow = "";
-                tl_second
-                  .to(".article-1-right-squre-item:nth-child(1)", {
-                    x: "-10%",
+            onComplete: () => {
+              document.body.style.overflow = "";
+              tl_second
+                .to(".article-1-right-squre-item:nth-child(1)", {
+                  x: "-10%",
+                  ease: "power4.out",
+                  duration: 1.5,
+                })
+                .to(
+                  ".article-1-right-squre-item:nth-child(2)",
+                  {
+                    x: "-20%",
                     ease: "power4.out",
                     duration: 1.5,
-                  })
-                  .to(
-                    ".article-1-right-squre-item:nth-child(2)",
-                    {
-                      x: "-20%",
-                      ease: "power4.out",
-                      duration: 1.5,
-                    },
-                    "<+0.05"
-                  )
-                  .to(
-                    ".article-1-right-squre-item:nth-child(3)",
-                    {
-                      x: "-30%",
-                      ease: "power4.out",
-                      duration: 1.5,
-                    },
-                    "<+0.05"
-                  );
-                // gsap.to(".article-1-right-squre-item",{
-                //   scrollTrigger:{
-                //     trigger:".article-1-container",
-                //     start:"top top",
-                //     bottom:'bottom bottom',
-                //     markers:true,
-                //     scrub:1,
-                //   },
-                //   x: "0%",
-                //   stagger: 0.1,
-                //   ease: "power4.out",
-                //   duration: 1.5,
-                // })
-              },
+                  },
+                  "<+0.05"
+                )
+                .to(
+                  ".article-1-right-squre-item:nth-child(3)",
+                  {
+                    x: "-30%",
+                    ease: "power4.out",
+                    duration: 1.5,
+                  },
+                  "<+0.05"
+                );
+              // gsap.to(".article-1-right-squre-item",{
+              //   scrollTrigger:{
+              //     trigger:".article-1-container",
+              //     start:"top top",
+              //     bottom:'bottom bottom',
+              //     markers:true,
+              //     scrub:1,
+              //   },
+              //   x: "0%",
+              //   stagger: 0.1,
+              //   ease: "power4.out",
+              //   duration: 1.5,
+              // })
             },
-            "<+0.5"
-          );
+          });
         };
         article1Ani();
 
@@ -371,6 +395,8 @@
             scrollTrigger: {
               trigger: ".article-3",
               start: "35% bottom",
+              end: "75% bottom",
+              scrub: 3,
             },
           });
           tl.from(".article-3-left-top-big-title img", {
@@ -443,6 +469,30 @@
               {
                 opacity: 1,
                 duration: 0.5,
+                onComplete: () => {
+                  const tl = gsap.timeline({
+                    scrollTrigger: {
+                      trigger: ".article-4-container",
+                      start: "25% bottom",
+                      end: "80% bottom",
+                      scrub: 1,
+                    },
+                  });
+                  tl.from(".text-latest img,.text-news img", {
+                    x: "-105%",
+                    skewY: "30deg",
+                    opacity: 0,
+                    stagger: "0.25",
+                    duration: 1,
+                  }).from(
+                    ".text-more,.text-last-zh",
+                    {
+                      opacity: 0,
+                      duration: 1.25,
+                    },
+                    "<+0.5"
+                  );
+                },
               },
               "<+0.25"
             );
