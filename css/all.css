@@ -30,7 +30,7 @@
   transition: all 1.5s;
 }
 #home .article-1 .article-1-container .article-1-left .article-1-left-txt .txt-active {
-  animation: topToDown 2.5s forwards;
+  animation: topToDown 1.5s forwards;
 }
 #home .article-1 .article-1-container .article-1-left .article-1-left-txt .txt-inactive {
   animation: centerToDown 1.5s forwards;
