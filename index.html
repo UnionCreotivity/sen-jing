@@ -11,15 +11,39 @@
     <title>森景建設</title>
   </head>
   <body>
+    <div class="loading-page">
+      <div class="box-logo">
+        <img src="./img/logo.svg" alt="" />
+      </div>
+      <div class="box-para">
+        <div class="loading-progress">0</div>
+        <span>%</span>
+      </div>
+    </div>
     <main id="home">
       <article class="article-1">
         <div class="article-1-container">
           <div class="article-1-left">
             <img src="./img/article-1-left@2x.webp" alt="" />
             <div class="article-1-left-txt">
-              <img class="txt-1" src="./img/article-1-left-txt.svg" alt="" />
-              <img class="txt-2" src="./img/article-1-left-txt.svg" alt="" />
-              <img class="txt-3" src="./img/article-1-left-txt.svg" alt="" />
+              <img
+                class="img-txt txt-1"
+                data-img="1"
+                src="./img/article-1-left-txt.svg"
+                alt=""
+              />
+              <img
+                class="img-txt txt-2"
+                data-img="2"
+                src="./img/txt-2.svg"
+                alt=""
+              />
+              <img
+                class="img-txt txt-3"
+                data-img="3"
+                src="./img/txt-3.svg"
+                alt=""
+              />
             </div>
           </div>
           <div class="article-1-right">
@@ -38,35 +62,23 @@
                     muted
                     playsinline
                   ></video>
-                  <!-- <img src="./img/article-1-right@2x.webp" alt="" /> -->
                   <div class="article-1-right-txt">
                     <img src="./img/Text-B.png" alt="" />
                   </div>
-                  <!-- <div class="article-1-right-small-txt">
-                    <img src="./img/cut-1-right-middle-text.svg" alt="" />
-                  </div> -->
                 </div>
                 <div class="swiper-slide">
-                  <img src="./img/輪播圖-2.png" alt="" />
+                  <img src="./img/輪播圖2.webp" alt="" />
                   <div class="article-1-right-txt">
-                    <img src="./img/Text.png" alt="" />
+                    <img src="./img/Text-B.png" alt="" />
                   </div>
-                  <!-- <div class="article-1-right-small-txt">
-                    <img src="./img/cut-1-right-middle-text.svg" alt="" />
-                  </div> -->
                 </div>
                 <div class="swiper-slide">
                   <img src="./img/輪播圖-3.png" alt="" />
                   <div class="article-1-right-txt">
                     <img src="./img/Text-B.png" alt="" />
                   </div>
-                  <!-- <div class="article-1-right-small-txt">
-                    <img src="./img/cut-1-right-middle-text.svg" alt="" />
-                  </div> -->
                 </div>
               </div>
-              <!-- <div class="swiper-button-prev"></div>
-              <div class="swiper-button-next"></div> -->
               <div class="swiper-pagination"></div>
             </div>
           </div>
@@ -176,7 +188,7 @@
                     <img src="./img/news.svg" alt="" />
                   </div>
                   <div class="text-more">
-                    <img src="./img/more.svg" alt="" />
+                    <img src="./img/more-vertical.svg" alt="" />
                   </div>
                 </div>
                 <div class="text-latest">
@@ -196,6 +208,7 @@
     <script src="./js/gsap.min.js"></script>
     <script src="./js/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./js/loading.js"></script>
     <script>
       $(window).on("load", function () {
         gsap.registerPlugin(ScrollTrigger);
@@ -208,10 +221,10 @@
             slidesPerView: 1,
             spaceBetween: 50,
             speed: 1500,
-            autoplay: {
-              delay: 6000,
-              disableOnInteraction: false,
-            },
+            // autoplay: {
+            //   delay: 6000,
+            //   disableOnInteraction: false,
+            // },
             loop: true,
             // navigation: {
             //   nextEl: ".swiper-button-next",
@@ -220,35 +233,38 @@
             effect: "fade",
             pagination: {
               el: ".swiper-pagination",
-              type: "custom",
-              currentClass: "swiper-pagination-active",
-              renderCustom: function (swiper, current, total) {
-                let page = "";
-                let txt = ``;
-                let currentHalf;
-                let totalhalf = total / 2;
-                for (let i = 0; i <= total; i++) {
-                  if (i === 0) {
-                    continue;
-                  }
-                  $(`.txt-${i}`).removeClass("txt-active");
-                  $(`.txt-${i}`).removeClass("txt-inactive");
-                  if (i === current) {
-                    page += `<span class="swiper-page-top-active custom"><span></span>0${i}</span>`;
-                    $(`.txt-${i}`).addClass("txt-active");
-                  } else {
-                    page += `<span class="swiper-page-top-inactive custom">0${i}</span>`;
-                    $(`.txt-${i}`).addClass("txt-inactive");
-                  }
-                }
-                return page;
+              clickable: true,
+              type: "bullets",
+              bulletClass: "swiper-page-top-inactive",
+              bulletActiveClass: "swiper-page-top-active",
+              renderBullet: function (index, className) {
+                const indexPlus = index + 1;
+                return `<span class="${className}" data-tag="${indexPlus}"><span></span>0${indexPlus}</span>`;
               },
             },
             fadeEffect: {
               crossFade: true,
             },
+            on: {
+              slideChange: function (swiper) {
+                const realIndex = swiper.realIndex + 1;
+                const bullets = $(".swiper-page-top-inactive");
+                const txtElement = $(".img-txt");
+                txtElement.each(function () {
+                  $(this).removeClass("txt-active");
+                  $(this).removeClass("txt-inactive");
+                  const imgTag = $(this).data("img");
+                  if (imgTag === realIndex) {
+                    $(this).addClass("txt-active");
+                  } else {
+                    $(this).addClass("txt-inactive");
+                  }
+                });
+              },
+            },
           });
         };
+
         cut1Swiper();
 
         //動畫
@@ -262,52 +278,59 @@
               scrub: 1,
             },
           });
-          tl.to(".article-1-right-squre-item", {
-            x: "-105%",
-            stagger: 0.1,
-            ease: "power4.out",
-            duration: 1.5,
-            onComplete: () => {
-              document.body.style.overflow = "";
-              tl_second
-                .to(".article-1-right-squre-item:nth-child(1)", {
-                  x: "-10%",
-                  ease: "power4.out",
-                  duration: 1.5,
-                })
-                .to(
-                  ".article-1-right-squre-item:nth-child(2)",
-                  {
-                    x: "-20%",
+          tl.to(".article-1-left-txt", {
+            opacity: 1,
+            duration: 3,
+          }).to(
+            ".article-1-right-squre-item",
+            {
+              x: "-105%",
+              stagger: 0.1,
+              ease: "power4.out",
+              duration: 1.5,
+              onComplete: () => {
+                document.body.style.overflow = "";
+                tl_second
+                  .to(".article-1-right-squre-item:nth-child(1)", {
+                    x: "-10%",
                     ease: "power4.out",
                     duration: 1.5,
-                  },
-                  "<+0.05"
-                )
-                .to(
-                  ".article-1-right-squre-item:nth-child(3)",
-                  {
-                    x: "-30%",
-                    ease: "power4.out",
-                    duration: 1.5,
-                  },
-                  "<+0.05"
-                );
-              // gsap.to(".article-1-right-squre-item",{
-              //   scrollTrigger:{
-              //     trigger:".article-1-container",
-              //     start:"top top",
-              //     bottom:'bottom bottom',
-              //     markers:true,
-              //     scrub:1,
-              //   },
-              //   x: "0%",
-              //   stagger: 0.1,
-              //   ease: "power4.out",
-              //   duration: 1.5,
-              // })
+                  })
+                  .to(
+                    ".article-1-right-squre-item:nth-child(2)",
+                    {
+                      x: "-20%",
+                      ease: "power4.out",
+                      duration: 1.5,
+                    },
+                    "<+0.05"
+                  )
+                  .to(
+                    ".article-1-right-squre-item:nth-child(3)",
+                    {
+                      x: "-30%",
+                      ease: "power4.out",
+                      duration: 1.5,
+                    },
+                    "<+0.05"
+                  );
+                // gsap.to(".article-1-right-squre-item",{
+                //   scrollTrigger:{
+                //     trigger:".article-1-container",
+                //     start:"top top",
+                //     bottom:'bottom bottom',
+                //     markers:true,
+                //     scrub:1,
+                //   },
+                //   x: "0%",
+                //   stagger: 0.1,
+                //   ease: "power4.out",
+                //   duration: 1.5,
+                // })
+              },
             },
-          });
+            "<+0.5"
+          );
         };
         article1Ani();
 
@@ -394,21 +417,21 @@
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: ".article-3",
-              start: "35% bottom",
+              start: "center bottom",
               end: "75% bottom",
-              scrub: 3,
+              scrub: 1,
             },
           });
           tl.from(".article-3-left-top-big-title img", {
             y: "105%",
             skewX: "-45deg",
             ease: "power4.out",
-            duration: 1.25,
+            duration: 1,
           }).from(
             ".article-3-left-top-small,.article-3-left-top-big-more",
             {
               opacity: 0,
-              duration: 1.5,
+              duration: 1.25,
             },
             "<+0.5"
           );

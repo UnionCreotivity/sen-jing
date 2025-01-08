@@ -25,17 +25,41 @@
   top: 9.5vw;
   left: 28vw;
 }
-#home .article-1 .article-1-container .article-1-left .article-1-left-txt .txt-active {
+#home .article-1 .article-1-container .article-1-left .article-1-left-txt .img-txt {
   position: absolute;
-  opacity: 1;
-  transform: translateX(0%);
   transition: all 1.5s;
 }
+#home .article-1 .article-1-container .article-1-left .article-1-left-txt .txt-active {
+  animation: topToDown 2.5s forwards;
+}
 #home .article-1 .article-1-container .article-1-left .article-1-left-txt .txt-inactive {
-  position: absolute;
-  opacity: 0;
-  transform: translateX(10%);
-  transition: all 1.5s;
+  animation: centerToDown 1.5s forwards;
+}
+@keyframes topToDown {
+  0% {
+    transform: translateY(-30%);
+    opacity: 0;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+@keyframes centerToDown {
+  0% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(40%);
+    opacity: 0;
+  }
 }
 #home .article-1 .article-1-container .article-1-right {
   position: relative;
@@ -74,21 +98,27 @@
   gap: 10px;
   transition: all 0.5s;
 }
+#home .article-1 .article-1-container .article-1-right .article-1-swiper .swiper-page-top-inactive {
+  cursor: pointer;
+  font-size: 0.9vw;
+  transition: all 0.5s;
+}
+#home .article-1 .article-1-container .article-1-right .article-1-swiper .swiper-page-top-inactive span {
+  transition: all 0.5s;
+}
 #home .article-1 .article-1-container .article-1-right .article-1-swiper .swiper-page-top-active {
   font-size: 1.1vw;
   transition: all 0.5s;
   display: flex;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
 }
 #home .article-1 .article-1-container .article-1-right .article-1-swiper .swiper-page-top-active span {
   display: inline-block;
   width: 1.25vw;
   height: 1px;
   background-color: white;
-}
-#home .article-1 .article-1-container .article-1-right .article-1-swiper .swiper-page-top-inactive {
-  font-size: 0.9vw;
   transition: all 0.5s;
 }
 #home .article-1 .article-1-container .article-1-right .article-1-swiper .swiper-slide {
@@ -353,4 +383,33 @@ canvas {
 article {
   width: 100%;
   position: relative;
+}
+
+.loading-page {
+  position: fixed;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #d2d2d2;
+  pointer-events: none;
+  overflow: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  gap: 1.25rem;
+}
+.loading-page .box-logo {
+  width: 6vw;
+}
+.loading-page .box-para {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 500;
+  font-family: "roboto";
 }/*# sourceMappingURL=all.css.map */
